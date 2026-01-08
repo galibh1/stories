@@ -11,6 +11,15 @@ type SidebarData = {
 };
 
 export function SidebarHome3({ data }: { data: SidebarData }) {
+  const displayName = (() => {
+    const raw = (data.about?.name ?? "").trim();
+    if (!raw) return "";
+    // Accept either "Steven" or "Hello, I'm Steven" style values.
+    const m = raw.match(/i['’]?m\s+(.+)$/i);
+    const cleaned = (m?.[1] ?? raw).trim();
+    return cleaned.replace(/^[,\s]+|[,\s]+$/g, "");
+  })();
+
   return (
     <div className="space-y-8">
       {/* About */}
@@ -19,7 +28,7 @@ export function SidebarHome3({ data }: { data: SidebarData }) {
           <Image src={data.about.image} alt={data.about.name} width={80} height={80} className="h-full w-full object-cover" />
         </div>
         <h3 className="text-2xl font-bold text-slate-900">
-          Hello, I&apos;m <span className="font-extrabold">{data.about.name.split(" ")[0]}</span>
+          Hello, I&apos;m <span className="font-extrabold">{displayName}</span>
         </h3>
         <p className="mt-4 text-sm leading-6 text-slate-600">
           {data.about.bio}

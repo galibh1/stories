@@ -112,10 +112,11 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* TRAVEL TIPS + SIDEBAR */}
+          {/* MAIN CONTENT + SIDEBAR (single sticky sidebar like the original template) */}
           <section className="mt-16">
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
+                {/* TRAVEL TIPS */}
                 <SectionHeading title="Travel Tips" />
                 <div className="mt-7 grid grid-cols-1 gap-8 md:grid-cols-2">
                   {home3.travelTips.slice(0, 2).map((p) => (
@@ -137,6 +138,7 @@ export default function HomePage() {
                   ))}
                 </div>
 
+                {/* 2 big cards (matches screenshot area before Latest Posts) */}
                 <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
                   {home3.latest.slice(0, 2).map((p) => (
                     <Card key={p.title} className="overflow-hidden">
@@ -161,84 +163,52 @@ export default function HomePage() {
                     </Card>
                   ))}
                 </div>
+
+                {/* LATEST POSTS (list) */}
+                <div className="mt-16">
+                  <SectionHeading title="Latest Posts" />
+                  <div className="mt-7 space-y-8">
+                    {home3.travelTips.slice(2, 6).map((p) => (
+                      <Card key={p.title} className="p-6">
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-[220px_1fr] sm:items-center">
+                          <Link
+                            href={p.href}
+                            className="group relative h-40 overflow-hidden rounded-xl border border-[var(--border)]"
+                          >
+                            <Image
+                              src={p.image}
+                              alt={p.title}
+                              fill
+                              className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                            />
+                          </Link>
+                          <div>
+                            <CategoryBadges tags={p.tags.slice(0, 2)} />
+                            <Link href={p.href} className="mt-2 block text-2xl font-bold leading-snug text-slate-900 hover:underline">
+                              {p.title}
+                            </Link>
+                            <MetaLine text={p.meta} />
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               <aside className="lg:col-span-4">
                 <div className="sticky top-28">
-                  <SidebarHome3 data={{
-                    about: home3.sidebar.about,
-                    popular: home3.sidebar.popular.map((p, idx) => ({
-                      ...p,
-                      image: home3.sidebar.instagram[idx % home3.sidebar.instagram.length],
-                    })),
-                    comments: home3.sidebar.comments,
-                    instagram: home3.sidebar.instagram,
-                  }} />
-                </div>
-              </aside>
-            </div>
-          </section>
-
-          {/* LATEST POSTS + COMMENTS + INSTAGRAM */}
-          <section className="mt-16">
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
-              <div className="lg:col-span-8">
-                <SectionHeading title="Latest Posts" />
-                <div className="mt-7 space-y-8">
-                  {home3.travelTips.slice(2, 6).map((p) => (
-                    <Card key={p.title} className="p-6">
-                      <div className="grid grid-cols-1 gap-6 sm:grid-cols-[220px_1fr]">
-                        <Link href={p.href} className="group relative overflow-hidden rounded-xl border border-[var(--border)]">
-                          <Image src={p.image} alt={p.title} fill className="object-cover transition duration-300 group-hover:scale-[1.03]" />
-                        </Link>
-                        <div>
-                          <CategoryBadges tags={p.tags.slice(0, 2)} />
-                          <Link href={p.href} className="mt-2 block text-2xl font-bold leading-snug text-slate-900 hover:underline">
-                            {p.title}
-                          </Link>
-                          <MetaLine text={p.meta} />
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-
-              <aside className="lg:col-span-4">
-                <div className="space-y-10">
-                  <div>
-                    <SectionHeading title="Last Comments" />
-                    <div className="mt-6 space-y-6">
-                      {home3.sidebar.comments.slice(0, 3).map((c) => (
-                        <Card key={c.name + c.date} className="p-5">
-                          <div className="flex items-start gap-4">
-                            <div className="relative h-14 w-14 flex-none overflow-hidden rounded-full border border-[var(--border)]">
-                              <Image src={c.avatar} alt={c.name} fill className="object-cover" />
-                            </div>
-                            <div className="min-w-0">
-                              <div className="flex flex-wrap items-center gap-2 text-xs">
-                                <span className="font-bold text-slate-900">{c.name}</span>
-                                <span className="text-slate-400">•</span>
-                                <span className="font-semibold text-slate-500">{c.date}</span>
-                              </div>
-                              <p className="mt-2 line-clamp-2 text-sm text-slate-600">{c.text}</p>
-                            </div>
-                          </div>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <SectionHeading title="Instagram" />
-                    <div className="mt-6 grid grid-cols-3 gap-3">
-                      {home3.sidebar.instagram.slice(0, 6).map((src) => (
-                        <Link key={src} href="/post/default" className="group relative aspect-square overflow-hidden rounded-xl border border-[var(--border)] shadow-soft">
-                          <Image src={src} alt="Instagram" fill className="object-cover transition duration-300 group-hover:scale-[1.03]" />
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
+                  <SidebarHome3
+                    data={{
+                      about: home3.sidebar.about,
+                      popular: home3.sidebar.popular.map((p, idx) => ({
+                        ...p,
+                        image: home3.sidebar.instagram[idx % home3.sidebar.instagram.length],
+                      })),
+                      comments: home3.sidebar.comments.slice(0, 3),
+                      instagram: home3.sidebar.instagram,
+                    }}
+                  />
                 </div>
               </aside>
             </div>
