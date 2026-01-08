@@ -16,7 +16,7 @@ const serif = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Stories — Homepage 3",
+  title: "Stories",
   description: "Stories blog UI rebuilt with Next.js + Tailwind",
 };
 
