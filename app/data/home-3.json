@@ -77,29 +77,30 @@
       "image": "/assets/imgs/news/thumb-3.jpg",
       "href": "/post/default"
     }
-  ],
-  "hero": [
+  ],"hero": [
     {
       "tags": [
-       
+        "Travel",
+        "Animal"
       ],
-      "title": "",
-      "meta": "",
+      "title": "How to Visit Bali's Monkey Forest",
+      "meta": "26 August 2020 \u00b7 18k Views",
       "image": "/assets/imgs/news/hero1.jpg",
       "href": "/post/big-image"
     },
     {
       "tags": [
-       
+        "Lifestyle",
+        "Destinations"
       ],
-      "title": "",
-      "meta": "",
+      "title": "Abstract Australia from Above",
+      "meta": "15 September 2020 \u00b7 23k Views",
       "image": "/assets/imgs/news/hero2.jpg",
       "href": "/post/left-image"
     },
     {
       "tags": [
-        
+        ""
       ],
       "title": "",
       "meta": "",
@@ -108,10 +109,11 @@
     },
     {
       "tags": [
-       
+        "Hotel",
+        "Healthy"
       ],
-      "title": "",
-      "meta": "",
+      "title": "Staying at the Hilton Seychelles Northolme Resort & Spa",
+      "meta": "22 September 2020 \u00b7 16k Views",
       "image": "/assets/imgs/news/hero4.jpg",
       "href": "/post/with-sidebar"
     }
